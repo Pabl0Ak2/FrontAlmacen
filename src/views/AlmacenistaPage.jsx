@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Inventory from './Inventory';
 
 const ActiveProductsList = () => {
   const [productosActivos, setProductosActivos] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +37,10 @@ const ActiveProductsList = () => {
     navigate('/login');
   };
 
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <div className="relative">
@@ -43,6 +49,13 @@ const ActiveProductsList = () => {
           className="absolute top-4 right-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-400 transition"
         >
           Cerrar Sesión
+        </button>
+
+        <button
+          onClick={toggleModal}
+          className="mr-20 absolute top-4 right-32 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition"
+        >
+          Ver Productos
         </button>
       </div>
 
@@ -85,6 +98,19 @@ const ActiveProductsList = () => {
           </tbody>
         </table>
       </div>
+      {modalVisible && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-11/12 md:w-2/3 p-6 relative">
+            <button
+              onClick={toggleModal}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+            >
+              X
+            </button>
+            <Inventory />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
