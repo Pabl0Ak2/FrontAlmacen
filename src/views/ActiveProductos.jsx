@@ -19,11 +19,16 @@ const MovimientosList = () => {
   }, []);
 
   return (
-    <div className="p-8 bg-gray-100">
+    <div className="bg-red-300">
       <div className="max-w-screen-lg mx-auto bg-white rounded-lg shadow-xl p-6">
         <h2 className="text-3xl font-semibold text-center text-indigo-600 mb-6">Lista de Movimientos</h2>
+        <div className="absolute top-4 right-6">
+          <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none">
+            Nuevo Movimiento
+          </button>
+        </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto h-[600px] overflow-y-auto">
           <table className="min-w-full table-auto text-center border-collapse">
             <thead className="bg-indigo-600 text-white">
               <tr>

@@ -42,39 +42,45 @@ const ProductList = () => {
     <div className="p-8 bg-white rounded-lg shadow-lg">
       <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Lista de Productos</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 rounded-lg overflow-hidden">
-          <thead>
-            <tr className="bg-blue-600 text-white">
-              <th className="px-4 py-2 text-left text-sm">Nombre</th>
-              <th className="px-4 py-2 text-left text-sm">Descripción</th>
-              <th className="px-4 py-2 text-left text-sm">Cantidad</th>
-              <th className="px-4 py-2 text-left text-sm">Estatus</th>
-              <th className="px-4 py-2 text-center text-sm">Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productos.map((producto) => (
-              <tr key={producto.id_producto} className="hover:bg-gray-100">
-                <td className="px-4 py-2 text-sm">{producto.nombre_producto}</td>
-                <td className="px-4 py-2 text-sm">{producto.descripcion}</td>
-                <td className="px-4 py-2 text-sm">{producto.cantidad_inventario}</td>
-                <td className="px-4 py-2 text-sm">
-                  <span className={`px-3 py-1 rounded-full text-white ${producto.estatus === 'Activo' ? 'bg-green-500' : 'bg-red-500'}`}>
-                    {producto.estatus}
-                  </span>
-                </td>
-                <td className="px-2 py-2 text-center">
-                  <button
-                    onClick={() => toggleStatus(producto.id_producto, producto.estatus)}
-                    className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-                    {producto.estatus === 'Activo' ? 'Desactivar' : 'Activar'}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="overflow-x-auto max-h-[300px]">
+  <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+    <thead>
+      <tr className="bg-blue-600 text-white">
+        <th className="px-4 py-2 text-left text-sm">Nombre</th>
+        <th className="px-4 py-2 text-left text-sm">Descripción</th>
+        <th className="px-4 py-2 text-left text-sm">Cantidad</th>
+        <th className="px-4 py-2 text-left text-sm">Estatus</th>
+        <th className="px-4 py-2 text-center text-sm">Acción</th>
+      </tr>
+    </thead>
+  </table>
+    <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+      <tbody>
+        {productos.map((producto) => (
+          <tr key={producto.id_producto} className="hover:bg-gray-100">
+            <td className="px-4 py-2 text-sm">{producto.nombre_producto}</td>
+            <td className="px-4 py-2 text-sm">{producto.descripcion}</td>
+            <td className="px-4 py-2 text-sm">{producto.cantidad_inventario}</td>
+            <td className="px-4 py-2 text-sm">
+              <span className={`px-3 py-1 rounded-full text-white ${producto.estatus === 'Activo' ? 'bg-green-500' : 'bg-red-500'}`}>
+                {producto.estatus}
+              </span>
+            </td>
+            <td className="px-2 py-2 text-center">
+              <button
+                onClick={() => toggleStatus(producto.id_producto, producto.estatus)}
+                className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300"
+              >
+                {producto.estatus === 'Activo' ? 'Desactivar' : 'Activar'}
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  
+</div>
+
       </div>
     </div>
   );
